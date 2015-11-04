@@ -1,0 +1,28 @@
+{
+  "schedule": "R/2015-11-1T00:00:00Z/PT1H",
+  "name": "Example Integration Test",
+  "container": {
+    "type": "DOCKER",
+    "image": "mesosphere/python-monitoring"
+  },
+  "cpus": "1.0",
+  "mem": "512",
+  "uris": [
+    "https://github.com/rxforces/propman/blob/master/integration_test.py"
+  ],
+  "command": "cd $MESOS_SANDBOX && ./integration_test.py",
+  "environmentVariables": [
+    {
+      "name": "HOST",
+      "value": "host.to.test"
+    },
+    {
+      "name": "OAUTH_TOKEN",
+      "value": "<REPLACEME>"
+    },
+    {
+      "name": "SSH_KEY",
+      "value": "<REPLACEME>"
+    }
+  ]
+}
