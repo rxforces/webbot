@@ -1,16 +1,16 @@
 {
-  "schedule": "R/2015-11-1T00:00:00Z/PT1H",
-  "name": "Example Integration Test",
+  "schedule": "R/2015-11-5T00:00:00Z/PT1H",
+  "name": "Example Webbot Test",
   "container": {
     "type": "DOCKER",
-    "image": "mesosphere/python-monitoring"
+    "image": "rxforces/webbot"
   },
   "cpus": "1.0",
   "mem": "512",
   "uris": [
-    "https://github.com/rxforces/propman/blob/master/integration_test.py"
+    "https://github.com/rxforces/webbot/raw/master/webbot.py"
   ],
-  "command": "cd $MESOS_SANDBOX && ./integration_test.py",
+  "command": "cd $MESOS_SANDBOX && ./webbot.py",
   "environmentVariables": [
     {
       "name": "HOST",

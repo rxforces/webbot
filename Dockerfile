@@ -1,5 +1,5 @@
 FROM ubuntu:trusty
-MAINTAINER YIJIE XIE <yixie@cisco.com>
+MAINTAINER RXForces <rxforces@gmail.com>
 RUN apt-get update && \
     apt-get install -y python python3 python-pip python3-pip python-dev python3-dev && \
     apt-get clean
