@@ -1,12 +1,14 @@
 {
-  "schedule": "R/2015-11-5T00:00:00Z/PT1H",
+  "schedule": "R5/2015-11-5T00:00:00.000Z/PT10S",
   "name": "Example Webbot Test",
   "container": {
     "type": "DOCKER",
-    "image": "rxforces/webbot"
+    "image": "mesosphere/python-monitoring"
   },
   "cpus": "1.0",
   "mem": "512",
+  "owner": "rxforces@gmail.com",
+  "async":false,
   "uris": [
     "https://github.com/rxforces/webbot/raw/master/webbot.py"
   ],
