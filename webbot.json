@@ -1,6 +1,6 @@
 {
-  "schedule": "R5/2015-11-5T00:00:00.000Z/PT10S",
-  "name": "Example Webbot Test",
+  "schedule": "R/2015-11-6T00:00:00.000Z/PT60S",
+  "name": "Webbot Test 1",
   "container": {
     "type": "DOCKER",
     "image": "mesosphere/python-monitoring"
@@ -12,7 +12,7 @@
   "uris": [
     "https://github.com/rxforces/webbot/raw/master/webbot.py"
   ],
-  "command": "cd $MESOS_SANDBOX && ./webbot.py",
+  "command": "cd $MESOS_SANDBOX && chmod 755 webbot.py && ./webbot.py",
   "environmentVariables": [
     {
       "name": "HOST",

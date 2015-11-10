@@ -1,5 +1,5 @@
 {
-  "id" : "m-shop",
+  "id" : "spider",
   "groups": [
     {
       "id": "site",
@@ -13,7 +13,7 @@
           "container": {
             "type": "DOCKER",
             "docker": {
-              "image": "mhausenblas/m-shop-nginx:latest",
+              "image": "rxforces/spider-nginx:latest",
               "network": "BRIDGE",
               "portMappings": [
                 { "hostPort": 0, "containerPort": 80 }
@@ -22,7 +22,7 @@
             "volumes": [
                   {
                     "containerPath": "/var/log/nginx",
-                    "hostPath": "/tmp/m-shop/nginx",
+                    "hostPath": "/tmp/spider/nginx",
                     "mode": "RW"
                   }
             ]
@@ -67,7 +67,7 @@
             "volumes": [
               {
                 "containerPath": "/var/log/access",
-                "hostPath": "/tmp/m-shop/nginx",
+                "hostPath": "/tmp/spider/nginx",
                 "mode": "RO"
               }
             ]
