@@ -1,0 +1,109 @@
+{
+  "id" : "spider",
+  "groups": [
+    {
+      "id": "site",
+      "apps":[
+        {
+          "id": "frontend",
+          "dependencies": ["../webdis"],
+          "instances": 1,
+          "cpus": 0.2,
+          "mem": 50,
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "rxforces/spider-frontend:latest",
+              "network": "BRIDGE",
+              "portMappings": [
+                { "hostPort": 0, "containerPort": 80 }
+              ]
+            },
+            "volumes": [
+                  {
+                    "containerPath": "/var/log/nginx",
+                    "hostPath": "/tmp/frontend/nginx",
+                    "mode": "RW"
+                  }
+            ]
+          }
+        },
+        {
+          "id": "backend",
+          "dependencies": ["../webdis"],
+          "instances": 1,
+          "cpus": 0.2,
+          "mem": 50,
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "rxforces/spider-backend:latest",
+              "network": "BRIDGE",
+              "portMappings": [
+                { "hostPort": 0, "containerPort": 5000 }
+              ]
+            },
+            "volumes": [
+                  {
+                    "containerPath": "/var/log/nginx",
+                    "hostPath": "/tmp/backend/nginx",
+                    "mode": "RW"
+                  }
+            ]
+          }
+        },
+        {
+          "id": "webdis",
+          "instances": 1,
+          "cpus": 0.5,
+          "mem": 100,
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "robtec/webdis",
+              "network": "BRIDGE",
+              "portMappings": [
+                { "hostPort": 0, "containerPort": 7379 }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id" : "analytics",
+      "dependencies": ["../site"],
+      "apps":[
+        {
+          "id": "elk",
+          "instances": 1,
+          "cpus": 0.5,
+          "mem": 200,
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "raulcd/elk-docker",
+              "network": "BRIDGE",
+              "portMappings": [
+                { "hostPort": 0, "containerPort": 5601 }
+              ]
+            },
+            "volumes": [
+              {
+                "containerPath": "/var/log/access",
+                "hostPath": "/tmp/backend/nginx",
+                "mode": "RO"
+              },
+              {
+                "containerPath": "/var/log/access",
+                "hostPath": "/tmp/frontend/nginx",
+                "mode": "RO"
+	      }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
+
